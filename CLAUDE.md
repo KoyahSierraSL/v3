@@ -29,6 +29,10 @@ Lint a single file:
 cd apps/web && npx eslint src/path/to/file.tsx
 ```
 
+## Build progress
+
+Maintain a dated log of milestones and context in [`docs/BUILD_PROGRESS.md`](docs/BUILD_PROGRESS.md). Update it when Linear issues close or infrastructure changes materially so agents and contributors share the same picture.
+
 ## Architecture
 
 This is a **pnpm + Turborepo monorepo** targeting Vercel deployment.

@@ -1,0 +1,72 @@
+# Build progress and context
+
+Living document for **humans and Cursor agents**: what shipped, what is in flight, and what comes next. Update it when a Linear issue closes, a milestone lands, or infra meaningfully changes—append to **Recent updates** and adjust **Current focus**.
+
+**How to update (agents):** After completing work, add a dated bullet under **Recent updates** (issue ID, short outcome, optional commit SHA). Refresh **Current focus** and **Completed milestones** if scope moved. Do not delete historical entries; strike through only if a decision was reversed.
+
+**Linear project:** [v3](https://linear.app/koyah-sierra/project/v3) (team Koyah Sierra). Cross-reference issue IDs (`KOY-###`) when known.
+
+---
+
+## Snapshot
+
+| Item | State |
+|------|--------|
+| Monorepo | pnpm 10 + Turborepo 2 |
+| Primary app | `apps/web` — React 19, Vite 8, TypeScript strict, `@vitejs/plugin-react-swc` |
+| Deploy | Vercel (`vercel.json` → `apps/web/dist`) |
+| Backend (planned use) | Supabase (client in `apps/web/src/lib/supabaseClient.ts`, typed `Database` placeholder) |
+| Packages | `@koyah/shared`, `@koyah/ui`, `@koyah/email-templates` — scaffolds with `typecheck`; no real features yet |
+
+---
+
+## Current focus
+
+<!-- Replace this section when priorities shift. -->
+
+- **Next (typical roadmap):** Design system / UI foundation per Linear (e.g. Tailwind v4, shadcn/ui, TanStack Router)—confirm active issue before implementing.
+- **No open blocker** recorded for local dev: `pnpm install`, `pnpm dev`, `pnpm build`, `pnpm typecheck`, `pnpm lint` should succeed from repo root.
+
+---
+
+## Completed milestones
+
+| Milestone | Summary | Linear / notes |
+|-----------|---------|------------------|
+| Monorepo foundation | pnpm workspaces, Turbo tasks, `apps/web` + `packages/*` layout | KOY-208 Done |
+| Web app TypeScript + Vite SWC | Strict TS in `apps/web`, SWC plugin, `@/` alias, Spanish `index.html`, Vercel Analytics/Speed Insights, ESLint + typescript-eslint, Supabase client stub | KOY-209 Done |
+| Monorepo-wide TS config | Root `tsconfig.base.json`; `apps/web` + all packages extend base; package `src/index.ts` + `typecheck`; root `typescript` devDep | KOY-210 Done |
+| Vite 8 react-swc warning | No-op `useAtYourOwnRisk_mutateSwcOptions` to avoid deprecated top-level `esbuild` JSX path in plugin | Commit `71612ef` |
+
+---
+
+## Technical foundation (checklist)
+
+Use this to avoid re-discovering decisions.
+
+- [x] Root `tsconfig.base.json` — shared strict options (`strict`, `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`, `verbatimModuleSyntax`, `moduleResolution: bundler`, `isolatedModules`, `noEmit`, …).
+- [x] `apps/web/tsconfig.json` extends base + DOM, `react-jsx`, `@/*` paths (keep in sync with `vite.config.ts` `resolve.alias`).
+- [x] `apps/web/tsconfig.node.json` extends base for `vite.config.ts`.
+- [x] `pnpm.onlyBuiltDependencies`: `@swc/core` (root `package.json`) for pnpm 10 install scripts.
+- [x] TypeScript **5.8.x** (avoid TS 6 `baseUrl`/`paths` deprecation until migrated).
+- [x] Turbo: `build`, `lint`, `typecheck`, `dev`, `clean` wired; workspaces define scripts as needed.
+
+---
+
+## Risks and open decisions
+
+| Topic | Note |
+|-------|------|
+| Package `main` points at `.ts` | Fine for Vite/workspace resolution; revisit if publishing to npm or running Node without a bundler. |
+| Scaffold packages | No exports beyond `export {}`; real APIs TBD. |
+| Supabase `Database` type | Replace `src/lib/database.types.ts` with generated types when schema exists. |
+
+---
+
+## Recent updates
+
+Newest first.
+
+- **2026-04-13** — KOY-210 closed: monorepo `tsconfig.base.json`, all workspaces `typecheck`, packages migrated to `index.ts`. Commit `915dc2e`.
+- **2026-04-13** — Vite build: silenced `@vitejs/plugin-react-swc` / Vite 8 `esbuild` deprecation via `useAtYourOwnRisk_mutateSwcOptions` no-op. Commit `71612ef`.
+- **2026-04-13** — KOY-209 closed: `apps/web` full TS strict scaffold, SWC, ESLint TS, etc. (see Linear / git history on `main`).

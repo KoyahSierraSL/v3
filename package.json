@@ -10,13 +10,21 @@
     "lint": "turbo lint",
     "test": "turbo test",
     "typecheck": "turbo typecheck",
-    "clean": "turbo clean"
+    "clean": "turbo clean",
+    "supabase": "supabase",
+    "db:start": "supabase start",
+    "db:stop": "supabase stop",
+    "db:status": "supabase status"
   },
   "devDependencies": {
+    "supabase": "^2.90.0",
     "turbo": "^2",
     "typescript": "^5.8.3"
   },
   "pnpm": {
-    "onlyBuiltDependencies": ["@swc/core"]
+    "onlyBuiltDependencies": [
+      "@swc/core",
+      "supabase"
+    ]
   }
 }

@@ -5,7 +5,7 @@ const anonKey = process.env.VITE_SUPABASE_ANON_KEY?.trim()
 
 if (!url || !anonKey) {
   console.error(
-    'Missing VITE_SUPABASE_URL or VITE_SUPABASE_ANON_KEY. Copy .env.example to .env and set both.',
+    'Missing VITE_SUPABASE_URL or VITE_SUPABASE_ANON_KEY. Copy apps/web/.env.example to apps/web/.env or .env.local and set both.',
   )
   process.exit(1)
 }

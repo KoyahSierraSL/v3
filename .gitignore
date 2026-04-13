@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Supabase CLI (explicit; also listed in supabase/.gitignore)
+supabase/.temp/
+
 # Turborepo
 .turbo/
 

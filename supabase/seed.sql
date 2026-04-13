@@ -1,0 +1,3 @@
+-- Seed data for local development (KOY-211).
+-- Runs after migrations when using `supabase db reset`.
+-- Example: INSERT INTO public.my_table ...

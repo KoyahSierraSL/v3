@@ -13,6 +13,10 @@ pnpm lint         # Lint all packages and apps
 pnpm test         # Run tests across all packages
 pnpm typecheck    # Type-check all packages
 pnpm clean        # Remove all dist/ outputs
+pnpm db:start     # Local Supabase stack (Docker; from repo root)
+pnpm db:stop      # Stop local Supabase
+pnpm db:status    # Show local API URLs and keys when running
+pnpm supabase     # Passthrough to Supabase CLI (e.g. `pnpm supabase migration new …`)
 ```
 
 To work on only the web app:
@@ -21,7 +25,7 @@ cd apps/web
 pnpm dev          # Vite dev server
 pnpm lint         # ESLint (flat config + typescript-eslint)
 pnpm typecheck    # tsc --noEmit (app + Vite config)
-pnpm test:supabase  # Test Supabase connection (requires .env)
+pnpm test:supabase  # Test Supabase connection (requires .env or .env.local in apps/web)
 ```
 
 Lint a single file:

@@ -1,0 +1,2 @@
+-- Initial migration placeholder (KOY-211).
+-- Add tables, extensions, and RLS in follow-up migrations.

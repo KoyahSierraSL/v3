@@ -44,6 +44,12 @@ packages/
 
 The three packages under `packages/` are scaffolded but contain no implementation yet.
 
+### TypeScript (monorepo)
+
+- Root [`tsconfig.base.json`](tsconfig.base.json) holds shared strict `compilerOptions` (aligned with KOY-210): `strict`, unused checks, `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`, `verbatimModuleSyntax`, `moduleResolution: "bundler"`, `isolatedModules`, `noEmit`, etc.
+- [`apps/web/tsconfig.json`](apps/web/tsconfig.json) extends the base and adds app-only options (`jsx`, DOM `lib`, `@/*` paths, `allowImportingTsExtensions`, `moduleDetection`). [`apps/web/tsconfig.node.json`](apps/web/tsconfig.node.json) extends the base for `vite.config.ts` (ES2022 lib only).
+- Each package under `packages/*` has its own `tsconfig.json` extending the base, `src/index.ts`, and a `typecheck` script. Root [`package.json`](package.json) includes `typescript` for a single obvious version alongside workspace package devDependencies.
+
 ### Web App (`apps/web`)
 
 - **React 19 + Vite 8** SPA with **TypeScript** (strict mode, SWC via `@vitejs/plugin-react-swc`)

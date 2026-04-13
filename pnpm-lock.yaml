@@ -11,6 +11,9 @@ importers:
       turbo:
         specifier: ^2
         version: 2.9.6
+      typescript:
+        specifier: ^5.8.3
+        version: 5.8.3
 
   apps/web:
     dependencies:
@@ -70,15 +73,27 @@ importers:
         specifier: ^8.0.4
         version: 8.0.8(@types/node@25.6.0)
 
-  packages/email-templates: {}
+  packages/email-templates:
+    devDependencies:
+      typescript:
+        specifier: ^5.8.3
+        version: 5.8.3
 
-  packages/shared: {}
+  packages/shared:
+    devDependencies:
+      typescript:
+        specifier: ^5.8.3
+        version: 5.8.3
 
   packages/ui:
     dependencies:
       '@koyah/shared':
         specifier: workspace:*
         version: link:../shared
+    devDependencies:
+      typescript:
+        specifier: ^5.8.3
+        version: 5.8.3
 
 packages:
 

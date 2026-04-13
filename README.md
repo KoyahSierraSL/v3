@@ -7,6 +7,7 @@ pnpm + Turborepo monorepo: React 19 + Vite 8 SPA in [`apps/web`](apps/web/), sha
 - [Node.js](https://nodejs.org/) 20+
 - [pnpm 10](https://pnpm.io/) (`corepack enable` or install globally)
 - [Docker Desktop](https://docs.docker.com/desktop/) — **only if** you run Supabase locally (`pnpm db:start`)
+- **Supabase CLI** is **not** an npm dependency (CI/Vercel installs stay lean). Root scripts use **`pnpm dlx supabase@2.90.0`**, which downloads the CLI on first use. Alternatively install the [Supabase CLI](https://supabase.com/docs/guides/cli) globally and run `supabase` directly from the repo root.
 
 ## Commands (repo root)
 

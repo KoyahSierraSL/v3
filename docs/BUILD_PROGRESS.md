@@ -49,8 +49,8 @@ Use this to avoid re-discovering decisions.
 - [x] Root `tsconfig.base.json` — shared strict options (`strict`, `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`, `verbatimModuleSyntax`, `moduleResolution: bundler`, `isolatedModules`, `noEmit`, …).
 - [x] `apps/web/tsconfig.json` extends base + DOM, `react-jsx`, `@/*` paths (keep in sync with `vite.config.ts` `resolve.alias`).
 - [x] `apps/web/tsconfig.node.json` extends base for `vite.config.ts`.
-- [x] `pnpm.onlyBuiltDependencies`: `@swc/core`, `supabase` (root `package.json`) for pnpm 10 install scripts.
-- [x] Supabase CLI at repo root: `supabase/config.toml`, `supabase/migrations/`, `supabase/seed.sql`; scripts `pnpm db:start` / `db:stop` / `db:status` / `pnpm supabase` (requires Docker for local stack).
+- [x] `pnpm.onlyBuiltDependencies`: `@swc/core` (root `package.json`) for pnpm 10 install scripts.
+- [x] Supabase CLI at repo root: `supabase/config.toml`, `supabase/migrations/`, `supabase/seed.sql`; scripts `pnpm db:start` / `db:stop` / `db:status` / `pnpm supabase` run **`pnpm dlx supabase@2.90.0`** (no `supabase` npm dependency — avoids Vercel `pnpm install` postinstall failures). Requires Docker for local stack.
 - [x] TypeScript **5.8.x** (avoid TS 6 `baseUrl`/`paths` deprecation until migrated).
 - [x] Turbo: `build`, `lint`, `typecheck`, `dev`, `clean` wired; workspaces define scripts as needed.
 
@@ -70,6 +70,7 @@ Use this to avoid re-discovering decisions.
 
 Newest first.
 
+- **2026-04-13** — Vercel: removed root `supabase` npm package (postinstall binary download failed on build with `Z_DATA_ERROR` / incorrect gzip header). Root `db:*` / `supabase` scripts now use **`pnpm dlx supabase@2.90.0`** so `pnpm install` in CI has no Supabase CLI postinstall.
 - **2026-04-13** — [KOY-211](https://linear.app/koyah-sierra/issue/KOY-211) set to **In Progress** on Linear; human/environment work split into [KOY-273](https://linear.app/koyah-sierra/issue/KOY-273) and [KOY-274](https://linear.app/koyah-sierra/issue/KOY-274). `docs/BUILD_PROGRESS.md` updated to match.
 - **2026-04-13** — KOY-211 (repo): added Supabase CLI layout (`supabase/`), root `supabase` devDependency + `db:*` scripts, expanded `.env.example` / `apps/web/.env.example`, README Supabase section. Full `supabase start` + `test:supabase` smoke run **not executed here** (Docker daemon unavailable); verify locally with Docker.
 - **2026-04-13** — KOY-210 closed: monorepo `tsconfig.base.json`, all workspaces `typecheck`, packages migrated to `index.ts`. Commit `915dc2e`.

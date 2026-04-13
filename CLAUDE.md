@@ -13,10 +13,10 @@ pnpm lint         # Lint all packages and apps
 pnpm test         # Run tests across all packages
 pnpm typecheck    # Type-check all packages
 pnpm clean        # Remove all dist/ outputs
-pnpm db:start     # Local Supabase stack (Docker; from repo root)
+pnpm db:start     # Local Supabase stack via `pnpm dlx supabase@2.90.0 start` (Docker; from repo root)
 pnpm db:stop      # Stop local Supabase
 pnpm db:status    # Show local API URLs and keys when running
-pnpm supabase     # Passthrough to Supabase CLI (e.g. `pnpm supabase migration new …`)
+pnpm supabase     # `pnpm dlx supabase@2.90.0` — passthrough (e.g. `pnpm supabase migration new …`)
 ```
 
 To work on only the web app:

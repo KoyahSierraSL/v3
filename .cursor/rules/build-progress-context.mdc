@@ -1,0 +1,14 @@
+---
+description: Read and maintain docs/BUILD_PROGRESS.md for shared project context
+alwaysApply: true
+---
+
+# Build progress context
+
+Before planning or implementing **non-trivial** work in this repo:
+
+1. **Read** `docs/BUILD_PROGRESS.md` (repo root) for shipped milestones, **Current focus**, **Technical foundation**, **Risks**, and **Recent updates**.
+2. Align suggestions and tasks with what is already documented there; avoid contradicting settled decisions unless the user asks for a change.
+3. **After** closing a meaningful milestone (e.g. Linear issue done, major infra change), **update** that file per its own “How to update” section: refresh **Current focus** if priorities shifted, append a dated line under **Recent updates** (issue ID, outcome, optional commit SHA), and adjust **Completed milestones** / checklists when appropriate.
+
+For trivial edits (typos, one-line fixes) with no impact on roadmap or architecture, reading the full doc is optional but skimming **Current focus** is still useful.

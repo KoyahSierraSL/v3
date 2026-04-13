@@ -33,6 +33,8 @@ cd apps/web && npx eslint src/path/to/file.tsx
 
 Maintain a dated log of milestones and context in [`docs/BUILD_PROGRESS.md`](docs/BUILD_PROGRESS.md). Update it when Linear issues close or infrastructure changes materially so agents and contributors share the same picture.
 
+In **Cursor**, the always-applied project rule [`.cursor/rules/build-progress-context.mdc`](.cursor/rules/build-progress-context.mdc) instructs agents to read that file before substantive work and to keep it updated after milestones.
+
 ## Architecture
 
 This is a **pnpm + Turborepo monorepo** targeting Vercel deployment.
